@@ -1,2 +1,3 @@
-# onlineChatting-by-websocket-basedon-python
-An online chatting aplication using websocket protocol based on python
+# Online Chatting
+--An online chatting aplication based on websocket && python socket
+### login

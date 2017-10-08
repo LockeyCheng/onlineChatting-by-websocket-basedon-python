@@ -14,7 +14,7 @@
       <file leaf-file-name="websockt-server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/websockt-server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
+            <state relative-caret-position="295">
               <caret line="286" column="54" lean-forward="true" selection-start-line="286" selection-start-column="54" selection-end-line="286" selection-end-column="54" />
               <folding>
                 <element signature="e#109#127#0" expanded="true" />
@@ -63,7 +63,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="31" />
     <option name="y" value="41" />
     <option name="width" value="1346" />
@@ -180,7 +180,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11786237" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -308,7 +308,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/websockt-server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
+        <state relative-caret-position="295">
           <caret line="286" column="54" lean-forward="true" selection-start-line="286" selection-start-column="54" selection-end-line="286" selection-end-column="54" />
           <folding>
             <element signature="e#109#127#0" expanded="true" />
