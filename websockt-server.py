@@ -1,41 +1,40 @@
 # coding=utf-8
 '''
-file:a.py
+file:websockt-server.py
 date:2017/10/2 20:48
 author:lockey
 email:lockey@123.com
 desc:
 '''
-import socket,json,time
+import socket,json
 import hashlib
-import threading, random
-from base64 import b64encode, b64decode
+import threading
+from base64 import b64encode
 
-clients = {}
+#用户信息存储字典
 users={}
+#群组信息存储字典
 groups={}
+
+#判断是否设置了掩码
 def is_bit_set(int_type, offset):
     mask = 1 << offset
     return not 0 == (int_type & mask)
-
+#设置掩码
 def set_bit(int_type, offset):
     return int_type | (1 << offset)
 
 def bytes_to_int(data):
     # note big-endian is the standard network byte order
     return int.from_bytes(data, byteorder='big')
-
+#发送数据的封装，不完整实现
 def pack(data):
     """pack bytes for sending to client"""
     frame_head = bytearray(2)
-
     # set final fragment
     frame_head[0] = set_bit(frame_head[0], 7)
-
     # set opcode 1 = text
-
     frame_head[0] = set_bit(frame_head[0], 0)
-
     # payload length
     assert len(data) < 126, "haven't implemented that yet"
     frame_head[1] = len(data)
@@ -43,7 +42,7 @@ def pack(data):
     frame = frame_head + data.encode('utf-8')
     return frame
 
-
+#接收数据的转换
 def parse_recv_data(msg):
     en_bytes = b''
     cn_bytes = []
@@ -82,10 +81,11 @@ def parse_recv_data(msg):
         res = (new % tuple(list(cn_str)))
     else:
         res = en_bytes.decode()
-
     return res
+
+#发送数据
 def send_data(dataObj):
-    data = json.dumps(dataObj)
+    data = json.dumps(dataObj)#转换数据为对象判断数据发送类型（群发或者点对点）
     if data == None or len(data) <= 0:
         return False
     if dataObj['type'] == 'personal':
@@ -140,7 +140,7 @@ class WebSocket(threading.Thread):  # 继承Thread
                         token) + "\r\nWebSocket-Origin: " + str(headers["Origin"]) + "\r\nWebSocket-Location: " + str(
                         headers["Location"]) + "\r\n\r\n"
 
-                    self.conn.send(str.encode(str(handshake)))
+                    self.conn.send(str.encode(str(handshake)))#发送握手信息
                     self.handshaken = True
                     print('Handshaken with {} success!'.format(self.remote))
 
@@ -152,28 +152,36 @@ class WebSocket(threading.Thread):  # 继承Thread
                     return False
                 else:
                     try:
+                        #以下为各种请求的处理（登录、注册、创建群组、发送消息等）
                         print(data)
                         #nowTime = time.strftime('%H:%M:%S', time.localtime(time.time()))
                         dataObj = json.loads(data)
                         if dataObj['type'] == 'quit':
                             quituser = dataObj['username']
                             print('User %s Logout!' % (quituser))
+                            users[quituser]['status'] = 0
                             del users[quituser]['conn']
                             self.conn.close()
                             return False
                         if (dataObj['type'] == 'login'):
                             regUser = dataObj['username']
+                            retStatus = 0
                             try:
                                 if users[regUser] and users[regUser]['password'] == dataObj['password']:
-                                    toRead = users[regUser]['toRead']
-                                    dataObj = {"type":"login","status":0,"toRead":'~'.join(toRead)}
-                                    users[regUser]['toRead'] = []
-                                    users[regUser]['conn']= self.conn
+                                    if users[regUser]['status'] == 1:
+                                        retStatus = 2
+                                    else:
+                                        users[regUser]['status'] = 1
+                                        #toRead = users[regUser]['toRead']
+                                        #dataObj = {"type":"login","status":0,"toRead":'~'.join(toRead)}
+                                        users[regUser]['toRead'] = []
+                                        users[regUser]['conn'] = self.conn
                                 else:
-                                    dataObj = {"type": "login", "status": 1}
+                                    retStatus = 1
                             except:
-                                dataObj = {"type": "login", "status": 1}
+                                retStatus = 1
                             finally:
+                                dataObj = {"type": "login", "status": retStatus}
                                 data = json.dumps(dataObj)
                                 self.conn.send(pack(data))
                             continue
@@ -182,8 +190,9 @@ class WebSocket(threading.Thread):  # 继承Thread
                             if regUser in users:
                                 dataObj = {"type": "reg", "status": 1}
                             else:
-                                users[regUser] = {'password':dataObj['password'],'conn':self.conn,'friends':[],'groups':[],'toRead':[]}
+                                users[regUser] = {'password':dataObj['password'],'conn':self.conn,'status':0,'friends':[],'groups':[],'toRead':[]}
                                 dataObj = {"type":"reg","status":0}
+                                users[regUser]['status'] = 1
                             data = json.dumps(dataObj)
                             self.conn.send(pack(data))
                             continue
@@ -273,18 +282,13 @@ class WebSocketServer(object):
         self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.socket.bind(("192.168.0.33", 8899))
         self.socket.listen(50)
-
+        #创建套接字，并监听
         while True:
             connection, address = self.socket.accept()
             username = "user-" + str(address[1])
             newSocket = WebSocket(connection, username, address)
             newSocket.start()  # 开始线程,执行run函数
 
-
 if __name__ == "__main__":
     server = WebSocketServer()
     server.begin()
-
-'''
-1.先建立连接，然后再通过发送过来的信息填充字典users={username:conn,password.etc}
-'''
