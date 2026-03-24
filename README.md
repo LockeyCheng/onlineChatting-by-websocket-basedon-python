@@ -3,7 +3,12 @@
 
 **following links are pictures match the title**
 
-### login
+### User Guide
+
+1. Start simple python socket as server: pythonx websockt-server.py
+2. open web page halo-hello.html
+3. register new user if no one/login with existing user/password
+4. search user to start a chat
 
 ![login](https://github.com/LockeyCheng/onlineChatting-by-websocket-basedon-python/blob/master/example-pictures/login.PNG)
 

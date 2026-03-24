@@ -280,7 +280,7 @@ class WebSocketServer(object):
         print('WebSocketServer Start!')
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.socket.bind(("192.168.0.33", 8899))
+        self.socket.bind(("127.0.0.1", 8899))
         self.socket.listen(50)
         #创建套接字，并监听
         while True:

@@ -2,7 +2,7 @@
 (function(){
 	var socket;
 	function connect() {
-		var host = "ws://192.168.0.33:8899";
+		var host = "ws://127.0.0.1:8899";
 		socket = new WebSocket(host);
 		try {
 			socket.onopen = function (msg) {
@@ -17,7 +17,7 @@
 					{
 					case 'login':
 					
-						if(dataObj.status == 0){
+						if(dataObj.status == 0 || dataObj.status == 2){
 								var tips = '<h4 class="ok">登录成功！</h4>';
 								$('#floatDiv').fadeOut(500);
 								$('.display_name').html(username);

@@ -5341,7 +5341,7 @@ header .navbar > .container .navbar-brand {
 }
 @media all and (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 1.5/1), (min-device-pixel-ratio: 1.5), (min-resolution: 138dpi), (min-resolution: 1.5dppx) {
   header .navbar > .container .navbar-brand {
-    background-image: url("../images/logo-white@2x.png");
+    background-image: url("../images/logo-white.png");
     -webkit-background-size: 125px 28px;
     -moz-background-size: 125px 28px;
     background-size: 125px 28px;
@@ -5571,7 +5571,7 @@ header .navbar-default .navbar-nav.navbar-right > li > a {
 }
 @media all and (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 1.5/1), (min-device-pixel-ratio: 1.5), (min-resolution: 138dpi), (min-resolution: 1.5dppx) {
   #hero #subhead .book-icon {
-    background-image: url("../images/icon@2x.png");
+    background-image: url("../images/icon.png");
     -webkit-background-size: 58px 58px;
     -moz-background-size: 58px 58px;
     background-size: 58px 58px;
@@ -5601,7 +5601,7 @@ header .navbar-default .navbar-nav.navbar-right > li > a {
 }
 @media all and (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 1.5/1), (min-device-pixel-ratio: 1.5), (min-resolution: 138dpi), (min-resolution: 1.5dppx) {
   #hero #subhead .book-icon .tail {
-    background-image: url("../images/icon-tail@2x.png");
+    background-image: url("../images/icon-tail.png");
     -webkit-background-size: 15px 15px;
     -moz-background-size: 15px 15px;
     background-size: 15px 15px;
@@ -6501,7 +6501,7 @@ z-index:1;
 #register #owl-login {
   width: 211px;
   height: 108px;
-  background-image: url("../images/head.png");
+  background-image: url("images/head.png");
   position: absolute;
   top: -100px;
   left: 50%;
@@ -6510,7 +6510,7 @@ z-index:1;
 @media all and (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 1.5/1), (min-device-pixel-ratio: 1.5), (min-resolution: 138dpi), (min-resolution: 1.5dppx) {
   #login #owl-login,
   #register #owl-login {
-    background-image: url("../images/owl-login@2x.png");
+    background-image: url("../images/head.png");
     -webkit-background-size: 211px 108px;
     -moz-background-size: 211px 108px;
     background-size: 211px 108px;
@@ -6572,7 +6572,7 @@ z-index:1;
   position: absolute;
   left: 20px;
   top: 40px;
-  background-image: url("../images/arm.png");
+  background-image: url("images/arm.png");
   -webkit-transition: 0.3s ease-out;
   -moz-transition: 0.3s ease-out;
   -o-transition: 0.3s ease-out;
@@ -6587,7 +6587,7 @@ z-index:1;
 @media all and (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 1.5/1), (min-device-pixel-ratio: 1.5), (min-resolution: 138dpi), (min-resolution: 1.5dppx) {
   #login #owl-login .arms .arm,
   #register #owl-login .arms .arm {
-    background-image: url("../images/owl-login-arm@2x.png");
+    background-image: url("../images/arm.png");
     -webkit-background-size: 40px 65px;
     -moz-background-size: 40px 65px;
     background-size: 40px 65px;
